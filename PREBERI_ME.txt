@@ -1,0 +1,60 @@
+1. Setupanje projekta
+
+POZOR, pojdite še v main program in takoj v main funkciji najdete objekt datoteke(Spremenite path da dela na vasemu racunalniku)!!!
+kliknite igrca.exe in naceloma se bo moral prikazati start menu text("Welcome to bastetov flipper")
+press enter (zacne se game)
+Če želite zagnati igro iz samega compilerja potem morate uporabiti Visual studio comunity 2019, različica 4.8.04084
+
+2. PRAVILA IGRE
+
+-Skratka to je baštetov flipper kar pomeni da deluje drugače kot standarna različica iz 80./90. let
+
+-Deluje na principu da igra zgenerira tri različne žogice(razlicna barva, razlicna velikost in s tem tudi teža zogice)
+
+-Zogice premikas tako da kliknes z levim gumbom miske ter povleces za njo, nato izpustis in zogica dobi hitrost, ki je sorazmerna glede na
+to kako dalec si povlekel miško. To funkcionalost lahko izvajas na vseh treh zogicah. 
+
+-Score se šteje ko se žogice medseboj dotaknejo 
+(za score se ubistvu sesteje x pa y hitrost obeh zogic(uporabljena je funkcija abs saj ne zelimo negativnega scora))
+to pomeni da dlje ko potegneš z miško, višje so hitrosti žogice in ob primeru odboja dveh žogic se score drastično poveča
+
+-Žogice se medseboj odbijajo in sešteva se score pri tem pa moramo biti pozorni: namreč če ena izmed IZBRANIH žogic pade na tla se igra konča ter zaključi igra
+
+-POZOR, v igri lahko vedno dve žogici padeta na tla, tretja žogica ne sme pasti na tla(Igralec ne ve kera žogica lahko pade na tla) zato moraš biti previden pri igranju igre
+
+-Za boljše možnosti odboja žoge, lahko uporabiš Paddle, ki ga lahko premikas levo in desno (Uporaba tipke A-za levo smer, in D-za desno)
+
+-Torej če "izbrana žogica" pade na tla se program zaključi, v datoteko se zapiše trenutno doseženi score in na zaslon se izpiše tekst za konec igre.
+
+-Za zaprtje windowa kliknes enter
+
+
+3. GLITCHES
+
+-Najbolj prepoznaven glitch je odboj zog ob desno steno, namrec koda deluje na isti princip kot za levo steno vendar se zogica odbije sele ko v celoti "preleti" desno steno(probal raznorazne resitve in ni nic delovalo)
+
+-Če žogicam dodamo ogromno hitrosti, se lahko medseboj zanimivo odbijejo kjer dobijo še večjo hitrost - lahko se zgodi da pobegnejo iz leve ali desne stene
+razlog zakaj lahko žogice pobegnejo iz mape je "Frame tunneling" kar pomeni da se zogica v enemu framu na sekundo premakne za vec px kot bi lahko koda preverjala kolizije med dvema danima objektoma
+
+4. KODA
+
+-je strukturirana na principu da includam classe dolocenih objektov ter njihove cppje, glavna je main funkcija kjer se deklarira glavni objekt world v katerem se zgodi vecina dogodkov igre
+-zdraven funkcij so zapisani tudi komentarji, ki podajo osnovne podatke o tem kaj naredi določena funkcija
+-v kodi so uporabljeni classi, pointerji, vektorji, SFML grafike, datoteke, knjižnice in še kaj bi se našlo
+
+
+5. MOJE MNENJE
+
+Mislim da mi je uspela dokaj dobra različica Flipperja, definitivno bi bila lahko struktura kode boljša in mogoče bolj pregledna.
+Najtežja stvar je bila implementacija fizik. Če uporabiš le preprost  statement kjer y in x smer spremeni v negativno vrednost in obratno potem se zogice ne premikajo zelo smooth.
+Zato je bila uporabljena tudi fizikalna enacba o trku dveh teles, ki bolj "realisticno" implementirajo odboj zog.
+V igro sem najprej imel namen implementirati se ovire, ki bi bile zarotirane ampak tukaj bi nastal velik problem.
+Namreč v primeru da so telesa pod razlicnim kotom, potem se zogica drugace odbija glede na trenutno x in y smer.
+Gledal sem sicer kar veliko youtube videov o tem da rabiš zarotirati sama telesea ter njihove kordinate, vendar mi tega ni uspelo implementirati.
+Za implementacijo samih ucinkovitih fizik zog sem potreboval priblizno tri dni(gledanje najrazlicnejsih videotov od C++ implementacij do Javascript iger)
+Po implementaciji fiziki sem dodal se objekte in zakone o tem ce se zoga odbije ob razlicne stene oziroma tla.
+Nakoncu sem uredil še main funkcijo kjer sem displayal razne tekste za main menu, end menu ter zapisovanje scora v datoteka
+
+FINAL THOUGHTS: Mislim da sem nardu igrco kar ured glede na to, da nisem prej nikol uporablu takih fizik, niti se nismo učil grafičnega programiranja,
+kar mi je zavzelo že cele marčne počitnce da sm sploh znal uporablat sf okna, sf oblike, vektorje...Osebno bila kar zanimiva izkušnja,
+čeprav me izdelava igric ne pritegne preveč (bolj zanimivo je implementirat razne algoritme ter uporaba podatkovnih baz za spletne strani - hehe komaj čakam 4. letnik :)
